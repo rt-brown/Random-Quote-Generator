@@ -94,13 +94,14 @@ var quotes = [
 ***/
 
 function getRandomQuote(array){
-  randomNumber = Math.floor((Math.random()*10)+1);
+  randomNumber = Math.floor((Math.random()*10));
+  console.log(randomNumber);
   randomAuthor = array[randomNumber].author;
   randomYear = array[randomNumber].year;
   randomLocation = array[randomNumber].location;
   return array[randomNumber].quote;
 }
-console.log(randomNumber);
+
 
 
 /***
@@ -116,26 +117,18 @@ console.log(randomNumber);
 function printQuote(){
   randomQuote = getRandomQuote(quotes);
   message = '<p class="quote">' + randomQuote + '</p>';
-  message += '<p class="source">' + randomAuthor + '</p>';
-  message += '<span class="citation">' + randomLocation + '</span>';
-  message += '<span class="year">' + randomYear + '</span>';
-    if(randomAuthor === null){
-      message = '<p class="quote">' + randomQuote + '</p>';
-      message += '<span class="citation">' + randomLocation + '</span>';
-      message += '<span class="year">' + randomYear + '</span>';
-    } else if(randomYear === null){
-      message = '<p class="quote">' + randomQuote + '</p>';
+ if(randomAuthor != null){
       message += '<p class="source">' + randomAuthor + '</p>';
-      message += '<span class="citation">' + randomLocation + '</span>';
-    } else if(randomLocation === null){
-      message = '<p class="quote">' + randomQuote + '</p>';
-      message += '<p class="source">' + randomAuthor + '</p>';
+    } if(randomYear != null){
       message += '<span class="year">' + randomYear + '</span>';
+    } if(randomLocation != null){
+      message += '<span class="citation">' + randomLocation + '</span>';
     }
 }
 
 printQuote();
 console.log(message);
+document.getElementById('quote-box').innerHTML = message;
 /***
   When the "Show another quote" button is clicked, the event listener
   below will be triggered, and it will call, or "invoke", the `printQuote`
