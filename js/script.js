@@ -16,6 +16,11 @@ FSJS project 1 - A Random Quote Generator
       quote object.
 ***/
 var randomNumber;
+var randomQuote;
+var message;
+var randomAuthor;
+var randomYear;
+var randomLocation;
 var quotes = [
   {
     quote: "I have, myself, full confidence that if all do their duty, if nothing is neglected, and if the best arrangements are made, as they are being made, we shall prove ourselves once again able to defend our Island home, to ride out the storm of war, and to outlive the menace of tyranny, if necessary for years, if necessary alone. At any rate, that is what we are going to try to do. That is the resolve of His Majesty’s Government-every man of them. That is the will of Parliament and the nation. The British Empire and the French Republic, linked together in their cause and in their need, will defend to the death their native soil, aiding each other like good comrades to the utmost of their strength. Even though large tracts of Europe and many old and famous States have fallen or may fall into the grip of the Gestapo and all the odious apparatus of Nazi rule, we shall not flag or fail. We shall go on to the end, we shall fight in France, we shall fight on the seas and oceans, we shall fight with growing confidence and growing strength in the air, we shall defend our Island, whatever the cost may be, we shall fight on the beaches, we shall fight on the landing grounds, we shall fight in the fields and in the streets, we shall fight in the hills; we shall never surrender, and even if, which I do not for a moment believe, this Island or a large part of it were subjugated and starving, then our Empire beyond the seas, armed and guarded by the British Fleet, would carry on the struggle, until, in God’s good time, the New World, with all its power and might, steps forth to the rescue and the liberation of the old.",
@@ -67,14 +72,14 @@ var quotes = [
   },
   {
     quote: "Fondly do we hope, fervently do we pray, that this mighty scourge of war may speedily pass away. Yet, if God wills that it continue until all the wealth piled by the bondsman’s two hundred and fifty years of unrequited toil shall be sunk, and until every drop of blood drawn with the lash shall be paid by another drawn with the sword, as was said three thousand years ago, so still it must be said “the judgments of the Lord are true and righteous altogether.” With malice toward none, with charity for all, with firmness in the right as God gives us to see the right, let us strive on to finish the work we are in, to bind up the nation’s wounds, to care for him who shall have borne the battle and for his widow and his orphan, to do all which may achieve and cherish a just and lasting peace among ourselves and with all nations.",
-    author: "Abraham Lincoln",
+    author: null, ///abe lincoln
     year: 1865,
     location: "Washington D.C."
   },
   {
     quote: "I am not included within the pale of this glorious anniversary! Your high independence only reveals the immeasurable distance between us. The blessings in which you this day rejoice are not enjoyed in common. The rich inheritance of justice, liberty, prosperity, and independence bequeathed by your fathers is shared by you, not by me. The sunlight that brought life and healing to you has brought stripes and death to me. This Fourth of July is yours, not mine. Youmay rejoice, I must mourn. To drag a man in fetters into the grand illuminated temple of liberty, and call upon him to join you in joyous anthems, were inhuman mockery and sacrilegious irony. Do you mean, citizens, to mock me, by asking me to speak today?",
     author: "Frederick Douglass",
-    year: 1852,
+    year: null, ///1852,
     location: "Rochester, NY"
   }
 ];
@@ -88,13 +93,16 @@ var quotes = [
      `quotes` array.
 ***/
 
-function getRandomQuote(){
+function getRandomQuote(array){
   randomNumber = Math.round(Math.random()*10);
   console.log(randomNumber);
-  console.log(quotes[randomNumber].quote);
+  randomAuthor = array[randomNumber].author;
+  randomYear = array[randomNumber].year;
+  randomLocation = array[randomNumber].location;
+  return array[randomNumber].quote;
 }
 
-getRandomQuote();
+
 
 /***
   Create the `printQuote` function to:
@@ -106,9 +114,29 @@ getRandomQuote();
    - set the `innerHTML` of the `quote-box` div to the HTML string.
 ***/
 
+function printQuote(){
+  randomQuote = getRandomQuote(quotes);
+  message = '<p class="quote">' + randomQuote + '</p>';
+  message += '<p class="source">' + randomAuthor + '</p>';
+  message += '<span class="citation">' + randomLocation + '</span>';
+  message += '<span class="year">' + randomYear + '</span>';
+    if(randomAuthor === null){
+      message = '<p class="quote">' + randomQuote + '</p>';
+      message += '<span class="citation">' + randomLocation + '</span>';
+      message += '<span class="year">' + randomYear + '</span>';
+    } else if(randomYear === null){
+      message = '<p class="quote">' + randomQuote + '</p>';
+      message += '<p class="source">' + randomAuthor + '</p>';
+      message += '<span class="citation">' + randomLocation + '</span>';
+    } else if(randomLocation === null){
+      message = '<p class="quote">' + randomQuote + '</p>';
+      message += '<p class="source">' + randomAuthor + '</p>';
+      message += '<span class="year">' + randomYear + '</span>';
+    }
+}
 
-
-
+printQuote();
+console.log(message);
 /***
   When the "Show another quote" button is clicked, the event listener
   below will be triggered, and it will call, or "invoke", the `printQuote`
