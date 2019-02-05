@@ -124,11 +124,10 @@ function printQuote(){
     } if(randomLocation != null){
       message += '<span class="citation">' + randomLocation + '</span>';
     }
+    console.log(message);
+    document.getElementById('quote-box').innerHTML = message;
 }
 
-printQuote();
-console.log(message);
-document.getElementById('quote-box').innerHTML = message;
 /***
   When the "Show another quote" button is clicked, the event listener
   below will be triggered, and it will call, or "invoke", the `printQuote`
