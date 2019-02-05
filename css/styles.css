@@ -16,7 +16,7 @@ body {
 }
 
 .quote {
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 400;
   line-height: 1.1;
   position: relative;
@@ -24,7 +24,7 @@ body {
 }
 
 .quote:before, .quote:after {
-  font-size: 6rem;
+  font-size: 2rem;
   line-height: 2.5rem;
   position: absolute;
 }
@@ -47,7 +47,6 @@ body {
   letter-spacing: 0.05em;
   line-height: 1.1;
   text-align: right;
-  margin-right: 4em;
 }
 
 .source:before {
@@ -56,6 +55,7 @@ body {
 
 .citation {
   font-style: italic;
+  text-align: right;
 }
 
 .citation:before {
@@ -69,7 +69,7 @@ body {
 }
 
 #loadQuote {
-  position: fixed;
+  position: absolute;
   width: 12em;
   display: inline-block;
   left: 50%;
