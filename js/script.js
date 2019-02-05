@@ -94,14 +94,13 @@ var quotes = [
 ***/
 
 function getRandomQuote(array){
-  randomNumber = Math.round(Math.random()*10);
-  console.log(randomNumber);
+  randomNumber = Math.floor((Math.random()*10)+1);
   randomAuthor = array[randomNumber].author;
   randomYear = array[randomNumber].year;
   randomLocation = array[randomNumber].location;
   return array[randomNumber].quote;
 }
-
+console.log(randomNumber);
 
 
 /***
