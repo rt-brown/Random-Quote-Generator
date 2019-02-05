@@ -88,8 +88,13 @@ var quotes = [
      `quotes` array.
 ***/
 
+function getRandomQuote(){
+  randomNumber = Math.round(Math.random()*10);
+  console.log(randomNumber);
+  console.log(quotes[randomNumber].quote);
+}
 
-
+getRandomQuote();
 
 /***
   Create the `printQuote` function to:
