@@ -15,6 +15,7 @@ FSJS project 1 - A Random Quote Generator
     - Add at least one `year` and/or `citation` property to at least one
       quote object.
 ***/
+var intervalID = window.setInterval(printQuote, 5000);
 var randomNumber;
 var randomQuote;
 var message;
@@ -115,6 +116,7 @@ function getRandomQuote(array){
 ***/
 
 function printQuote(){
+  resetInterval();
   randomQuote = getRandomQuote(quotes);
   message = '<p class="quote">' + randomQuote + '</p>';
  if(randomAuthor != null){
@@ -124,8 +126,12 @@ function printQuote(){
     } if(randomLocation != null){
       message += '<span class="citation">' + randomLocation + '</span>';
     }
-    console.log(message);
     document.getElementById('quote-box').innerHTML = message;
+}
+
+function resetInterval(){
+  clearInterval(intervalID);
+  intervalID = setInterval(printQuote, 5000);
 }
 
 /***
