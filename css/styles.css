@@ -1,7 +1,7 @@
 /* Random Quote Generator Styles */
 
 body {
-  background-color: #36b55c;
+  background-color: ;
   color: white;
   font-family: 'Playfair Display', serif;
 }
@@ -12,6 +12,7 @@ body {
   left: 10%;
   right: 10%;
   width: 80%;
+  bottom: 20%;
   line-height: .5;
 }
 
@@ -46,7 +47,7 @@ body {
   font-size: 1.25rem;;
   letter-spacing: 0.05em;
   line-height: 1.1;
-  text-align: right;
+  text-align: left;
 }
 
 .source:before {
@@ -55,7 +56,7 @@ body {
 
 .citation {
   font-style: italic;
-  text-align: right;
+  text-align: left;
 }
 
 .citation:before {
@@ -69,16 +70,19 @@ body {
 }
 
 #loadQuote {
-  position: absolute;
+  position: relative;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
   width: 12em;
   display: inline-block;
   left: 50%;
   margin-left: -6em;
-  bottom: 150px;
+  bottom: -30px;
   border-radius: 4px;
   border: 2px solid #fff;
   color: #fff;
-  background-color: #36b55c;
+  background-color: ;
   padding: 15px 0;
   transition: .5s ;
 }

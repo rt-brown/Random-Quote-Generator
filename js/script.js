@@ -15,7 +15,8 @@ FSJS project 1 - A Random Quote Generator
     - Add at least one `year` and/or `citation` property to at least one
       quote object.
 ***/
-var intervalID = window.setInterval(printQuote, 5000);
+var bgColor;
+var intervalID = window.setInterval(printQuote, 60000);
 var randomNumber;
 var randomQuote;
 var message;
@@ -116,6 +117,7 @@ function getRandomQuote(array){
 ***/
 
 function printQuote(){
+  randomColor();
   resetInterval();
   randomQuote = getRandomQuote(quotes);
   message = '<p class="quote">' + randomQuote + '</p>';
@@ -127,13 +129,25 @@ function printQuote(){
       message += '<span class="citation">' + randomLocation + '</span>';
     }
     document.getElementById('quote-box').innerHTML = message;
+    document.body.style.backgroundColor = bgColor;
+    document.getElementById('loadQuote').style.backgroundColor = bgColor;
 }
 
 function resetInterval(){
   clearInterval(intervalID);
-  intervalID = setInterval(printQuote, 5000);
+  intervalID = setInterval(printQuote, 60000);
 }
 
+function randomColor(){
+  var x = Math.floor(Math.random()* 256);
+  var y = Math.floor(Math.random()* 256);
+  var z = Math.floor(Math.random()* 256);
+  bgColor = "rgb(" + x + "," + y + "," + z + ")";
+  return bgColor;
+}
+randomColor();
+document.body.style.backgroundColor = bgColor;
+document.getElementById('loadQuote').style.backgroundColor = bgColor;
 /***
   When the "Show another quote" button is clicked, the event listener
   below will be triggered, and it will call, or "invoke", the `printQuote`
