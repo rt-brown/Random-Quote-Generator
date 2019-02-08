@@ -7,13 +7,8 @@ FSJS project 1 - A Random Quote Generator
 
 
 /***
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-
-  Recommended:
-    - Add at least one `year` and/or `citation` property to at least one
-      quote object.
+  Declaring global variables and creating an array of objects.
+  Each object has four properties. If one property is missing 'null' is put in it's place.
 ***/
 var bgColor;
 var intervalID = window.setInterval(printQuote, 60000);
@@ -40,7 +35,7 @@ var quotes = [
     quote: "Tell General Howard I know his heart. What he told me before, I have it in my heart. I am tired of fighting. Our Chiefs are killed; Looking Glass is dead, Ta Hool Hool Shute is dead. The old men are all dead. It is the young men who say yes or no. He who led on the young men is dead. It is cold, and we have no blankets; the little children are freezing to death. My people, some of them, have run away to the hills, and have no blankets, no food. No one knows where they are – perhaps freezing to death. I want to have time to look for my children, and see how many of them I can find. Maybe I shall find them among the dead. Hear me, my Chiefs! I am tired; my heart is sick and sad. From where the sun now stands I will fight no more forever.",
     author: "Chief Joseph",
     year: 1877,
-    location: "Montana Territory"
+    location: null
   },
   {
     quote: "Can we forge against these enemies a grand and global alliance, North and South, East and West, that can assure a more fruitful life for all mankind? Will you join in that historic effort? In the long history of the world, only a few generations have been granted the role of defending freedom in its hour of maximum danger. I do not shrink from this responsibility — I welcome it. I do not believe that any of us would exchange places with any other people or any other generation. The energy, the faith, the devotion which we bring to this endeavor will light our country and all who serve it — and the glow from that fire can truly light the world. And so, my fellow Americans: ask not what your country can do for you — ask what you can do for your country. My fellow citizens of the world: ask not what America will do for you, but what together we can do for the freedom of man.",
@@ -58,7 +53,7 @@ var quotes = [
     quote: "While I repeat my obligations to the Army in general, I should do injustice to my own feelings not to acknowledge in this place the peculiar Services and distinguished merits of the Gentlemen who have been attached to my person during the War. It was impossible the choice of confidential Officers to compose my family should have been more fortunate. Permit me Sir, to recommend in particular those, who have continued in Service to the present moment, as worthy of the favorable notice and patronage of Congress.I consider it an indispensable duty to close this last solemn act of my Official life, by commending the Interests of our dearest Country to the protection of Almighty God, and those who have the superintendence of them, to his holy keeping. Having now finished the work assigned me, I retire from the great theater of Action; and bidding an Affectionate farewell to this August body under whose orders I have so long acted, I here offer my Commission, and take my leave of all the employments of public life.",
     author: "George Washington",
     year: 1784,
-    location: "Annapolis, Maryland"
+    location: null
   },
   {
     quote: "In the councils of government, we must guard against the acquisition of unwarranted influence, whether sought or unsought, by the military-industrial complex. The potential for the disastrous rise of misplaced power exists and will persist. We must never let the weight of this combination endanger our liberties or democratic processes. We should take nothing for granted. Only an alert and knowledgeable citizenry can compel the proper meshing of the huge industrial and military machinery of defense with our peaceful methods and goals, so that security and liberty may prosper together.",
@@ -74,14 +69,14 @@ var quotes = [
   },
   {
     quote: "Fondly do we hope, fervently do we pray, that this mighty scourge of war may speedily pass away. Yet, if God wills that it continue until all the wealth piled by the bondsman’s two hundred and fifty years of unrequited toil shall be sunk, and until every drop of blood drawn with the lash shall be paid by another drawn with the sword, as was said three thousand years ago, so still it must be said “the judgments of the Lord are true and righteous altogether.” With malice toward none, with charity for all, with firmness in the right as God gives us to see the right, let us strive on to finish the work we are in, to bind up the nation’s wounds, to care for him who shall have borne the battle and for his widow and his orphan, to do all which may achieve and cherish a just and lasting peace among ourselves and with all nations.",
-    author: null, ///abe lincoln
+    author: "Abraham Lincoln"
     year: 1865,
     location: "Washington D.C."
   },
   {
     quote: "I am not included within the pale of this glorious anniversary! Your high independence only reveals the immeasurable distance between us. The blessings in which you this day rejoice are not enjoyed in common. The rich inheritance of justice, liberty, prosperity, and independence bequeathed by your fathers is shared by you, not by me. The sunlight that brought life and healing to you has brought stripes and death to me. This Fourth of July is yours, not mine. Youmay rejoice, I must mourn. To drag a man in fetters into the grand illuminated temple of liberty, and call upon him to join you in joyous anthems, were inhuman mockery and sacrilegious irony. Do you mean, citizens, to mock me, by asking me to speak today?",
     author: "Frederick Douglass",
-    year: null, ///1852,
+    year: 1852
     location: "Rochester, NY"
   }
 ];
@@ -89,10 +84,10 @@ var quotes = [
 
 
 /***
-  Create the `getRandomQuote` function to:
-   - generate a random number
-   - use the random number to `return` a random quote object from the
-     `quotes` array.
+  Creates the getRandomQuote() function. This function generates a random number
+  and stores it in a variable named randomNumber. randomNumber is then passed
+  to the position of the array and property and stores the value in a variable.
+  Ultimately it returns just the array[randomNumber].quote.
 ***/
 
 function getRandomQuote(array){
@@ -107,13 +102,10 @@ function getRandomQuote(array){
 
 
 /***
-  Create the `printQuote` function to:
-   - call the `getRandomQuote` function and assign it to a variable.
-   - use the properties of the quote object stored in the variable to
-     create your HTML string.
-   - use conditionals to make sure the optional properties exist before
-     they are added to the HTML string.
-   - set the `innerHTML` of the `quote-box` div to the HTML string.
+  printQuote() has a few tasks it completes. Primarily it calls getRandomQuote()
+  and stores that value in a var. Then it begins concatinating the message. There
+  are a few if statements in case one of the properites returns null. it then
+  prints to the page. As a secondary part of this function it calls randomColor() and resetInterval()
 ***/
 
 function printQuote(){
@@ -133,10 +125,14 @@ function printQuote(){
     document.getElementById('loadQuote').style.backgroundColor = bgColor;
 }
 
+/// resets the interval to allow quotes to be generated after 60ms either upon click or page refresh
+
 function resetInterval(){
   clearInterval(intervalID);
   intervalID = setInterval(printQuote, 60000);
 }
+
+/// generates 3 random numbers and then stores them as a string in var to pass to the CSS file.
 
 function randomColor(){
   var x = Math.floor(Math.random()* 256);
@@ -148,14 +144,6 @@ function randomColor(){
 randomColor();
 document.body.style.backgroundColor = bgColor;
 document.getElementById('loadQuote').style.backgroundColor = bgColor;
-/***
-  When the "Show another quote" button is clicked, the event listener
-  below will be triggered, and it will call, or "invoke", the `printQuote`
-  function. So do not make any changes to the line of code below this
-  comment.
-***/
+
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
