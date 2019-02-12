@@ -13,11 +13,7 @@ FSJS project 1 - A Random Quote Generator
 var bgColor;
 var intervalID = window.setInterval(printQuote, 60000);
 var randomNumber;
-var randomQuote;
 var message;
-var randomAuthor;
-var randomYear;
-var randomLocation;
 var quotes = [
   {
     quote: "I have, myself, full confidence that if all do their duty, if nothing is neglected, and if the best arrangements are made, as they are being made, we shall prove ourselves once again able to defend our Island home, to ride out the storm of war, and to outlive the menace of tyranny, if necessary for years, if necessary alone. At any rate, that is what we are going to try to do. That is the resolve of His Majesty’s Government-every man of them. That is the will of Parliament and the nation. The British Empire and the French Republic, linked together in their cause and in their need, will defend to the death their native soil, aiding each other like good comrades to the utmost of their strength. Even though large tracts of Europe and many old and famous States have fallen or may fall into the grip of the Gestapo and all the odious apparatus of Nazi rule, we shall not flag or fail. We shall go on to the end, we shall fight in France, we shall fight on the seas and oceans, we shall fight with growing confidence and growing strength in the air, we shall defend our Island, whatever the cost may be, we shall fight on the beaches, we shall fight on the landing grounds, we shall fight in the fields and in the streets, we shall fight in the hills; we shall never surrender, and even if, which I do not for a moment believe, this Island or a large part of it were subjugated and starving, then our Empire beyond the seas, armed and guarded by the British Fleet, would carry on the struggle, until, in God’s good time, the New World, with all its power and might, steps forth to the rescue and the liberation of the old.",
@@ -86,24 +82,21 @@ var quotes = [
 /***
   Creates the getRandomQuote() function. This function generates a random number
   and stores it in a variable named randomNumber. randomNumber is then passed
-  to the position of the array and property and stores the value in a variable.
-  Ultimately it returns just the array[randomNumber].quote.
+  to the position of the array and property and it returns the object in that postion
+  of the array.
 ***/
 
 function getRandomQuote(array){
   randomNumber = Math.floor((Math.random()*10));
   console.log(randomNumber);
-  randomAuthor = array[randomNumber].author;
-  randomYear = array[randomNumber].year;
-  randomLocation = array[randomNumber].location;
-  return array[randomNumber].quote;
+  return array[randomNumber];
 }
-
 
 
 /***
   printQuote() has a few tasks it completes. Primarily it calls getRandomQuote()
-  and stores that value in a var. Then it begins concatinating the message. There
+  in order to return the random object and then creates variables for the properties
+  of that object. Then it begins concatinating the message. There
   are a few if statements in case one of the properites returns null. it then
   prints to the page. As a secondary part of this function it calls randomColor() and resetInterval()
 ***/
@@ -111,7 +104,11 @@ function getRandomQuote(array){
 function printQuote(){
   randomColor();
   resetInterval();
-  randomQuote = getRandomQuote(quotes);
+  var randomObject = getRandomQuote(quotes);
+  var randomQuote = quotes[randomNumber].quote;
+  var randomAuthor = quotes[randomNumber].author;
+  var randomYear = quotes[randomNumber].year;
+  var randomLocation = quotes[randomNumber].location;
   message = '<p class="quote">' + randomQuote + '</p>';
  if(randomAuthor != null){
       message += '<p class="source">' + randomAuthor + '</p>';
